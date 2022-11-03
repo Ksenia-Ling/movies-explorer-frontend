@@ -13,6 +13,11 @@
     height: 60px;
 }
 
+.search-form__form:hover {
+    border-bottom: #4285F4 1px solid;
+    transition: .3s border-bottom ease-in;
+}
+
 .search-form__submit-button {
     background-color: #202020;
     border: none;
@@ -33,5 +38,5 @@
     font-weight: 500;
     width: 1090px;
     color: white;
+    outline: none;
 }
-

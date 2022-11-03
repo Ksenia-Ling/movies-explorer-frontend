@@ -21,7 +21,7 @@ function Header({ isLoggedIn }) {
                     className="header__logo"
                     src={logo}
                     alt="лого 'Movie Explorer'" />
-                {isLoggedIn ?
+                {!isLoggedIn ?
                     <Switch>
                         <Route path="/">
                             <nav className={`header__navigation ${!isLoggedIn && "header__auth"}`}>

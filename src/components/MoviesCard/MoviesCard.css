@@ -8,6 +8,10 @@
     border-radius: 6px;
 }
 
+.movies-card:hover .movie__remove-button {
+    visibility: visible;
+}
+
 .movies-card__cover {
     width: 364px;
     height: 203px;
@@ -60,4 +64,9 @@
 
 .movies__like-button_active {
     background-image: url(../../images/MoviesCard/like-icon.svg);
+}
+
+.movie__remove-button {
+    background-image: url(../../images/MoviesCard/delete-icon.svg);
+    visibility: hidden;
 }

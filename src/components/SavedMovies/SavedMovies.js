@@ -1,19 +1,24 @@
-import React from "react";
+import { React, useState } from 'react';
 import './SavedMovies.css';
+import Header from '../Header/Header';
 import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 
 function SavedMovies({ movies }) {
+
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    
     return (
-        <main className='saved-movies'>
-            <Header />
-            <SearchForm />
-            <MoviesCardList
-                initialMovies={movies} />
-            <Footer />
-        </main>
+    <main className='saved-movies'>
+        <Header
+            isLoggedIn={isLoggedIn}
+        />
+        <SearchForm />
+        <MoviesCardList
+            initialMovies={movies} />
+        <Footer />
+    </main>
     );
 }
 

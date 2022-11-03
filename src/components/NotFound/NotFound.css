@@ -1,0 +1,34 @@
+.page-not-found {
+    font-family: "Inter", "Arial", sans-serif;
+    background-color: #202020;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-not-found__heading {
+    font-size: 140px;
+    line-height: 169px;
+    font-weight: 400;
+    width: 400px;
+    text-align: center;
+    padding: 246px 0 5px;
+    margin: 0;
+}
+
+.page-not-found__text {
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 400;
+    padding-bottom: 184px;
+    margin: 0;
+}
+
+.page-not-found__return-link {
+    color: #4285F4;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+    text-decoration: none;
+}
