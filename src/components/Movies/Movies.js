@@ -8,7 +8,6 @@ import Footer from '../Footer/Footer';
 function Movies({ movies }) {
     return (
         <main className='movies'>
-            <Header />
             <SearchForm />
             <MoviesCardList
                 initialMovies={movies} />

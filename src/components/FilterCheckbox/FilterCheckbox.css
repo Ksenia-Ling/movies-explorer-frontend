@@ -1,0 +1,15 @@
+.filter-checkbox {
+    margin-top: 33px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.filter-checkbox__label {
+    font-family: "Inter", "Arial", sans-serif;
+    font-size: 13px;
+    font-weight: 400px;
+    line-height: 18px;
+    margin-left: 14px;
+}

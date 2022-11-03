@@ -10,10 +10,12 @@ function MoviesCardList({ initialMovies }) {
                     <MoviesCard movie={movie} id={movie._id} />)
                 )}
             </ul>
-            <button className='movies-container__more-button'
-                type='button'>
-                Ещё
-            </button>
+            <div className='movies-container__more'>
+                <button className='movies-container__more-button'
+                    type='button'>
+                    Ещё
+                </button>
+            </div>
         </section>
     );
 }
