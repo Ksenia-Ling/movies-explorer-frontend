@@ -1,4 +1,5 @@
-import { Route, Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
+import { useState } from 'react';
 import './App.css';
 import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
@@ -8,10 +9,16 @@ import Profile from '../Profile/Profile.js';
 import Login from '../Login/Login.js';
 import Register from '../Register/Register.js';
 
+
 function App() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
   return (
     <div className="page">
-      <Header />
+      <Header 
+      isLoggedIn={ isLoggedIn }
+      />
       <Switch>
         <Route exact path='/'>
           <Main />

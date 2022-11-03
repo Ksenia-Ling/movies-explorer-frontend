@@ -1,7 +1,7 @@
 import React from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox.js';
 import './SearchForm.css';
-// Импортировать searchIco
+import searchIco from '../../images/SearchForm/find.svg'
 
 function SearchForm() {
     return (

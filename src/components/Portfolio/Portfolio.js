@@ -1,6 +1,6 @@
 import React from 'react';
-import './Portfloio.css';
-// Импортировать arrowIco
+import './Portfolio.css';
+import arrowIco from '../../images/Portfolio/arrow-icon.svg'
 
 function Portfolio() {
     return (

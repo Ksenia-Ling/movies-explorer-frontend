@@ -1,0 +1,50 @@
+.header {
+    background-color: #073042;
+    font-family: "Inter", "Arial", sans-serif;
+}
+
+.header__container {
+    max-width: 1140px;
+    min-height: 74px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+}
+
+.header__logo {
+    width: 38px;
+    height: 38px;
+}
+
+.header__navigation {
+    height: 32px;
+}
+
+.header__auth {
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__link {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 32px;
+    text-decoration: none;
+}
+
+.header__link_type_login {
+    color: black;
+    width: 76px;
+    background-color: #3DDC84;
+    border-radius: 3px;
+    border: transparent;
+    text-align: center;
+}
+
+.header__link_type_auth {
+    color: white;
+    padding-right: 30px;
+}

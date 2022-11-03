@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import './Movies.css';
+import './MoviesCard.css';
 
 function MoviesCard({ movie }) {
     const { pathname } = useLocation();

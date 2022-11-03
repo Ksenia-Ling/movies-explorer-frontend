@@ -1,11 +1,9 @@
 import React from 'react';
 import './Profile.css';
-import Header from '../Header/Header';
 
 function Profile() {
     return (
         <main className='profile'>
-            <Header />
             <h1 className='profile__heading'>Привет, Ксения!</h1>
             <form className='profile__form'>
                 <div className='profile__form-input'>

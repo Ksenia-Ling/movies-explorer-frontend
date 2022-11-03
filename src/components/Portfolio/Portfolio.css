@@ -1,0 +1,48 @@
+.portfolio {
+    font-family: "Inter", "Arial", sans-serif;
+}
+
+.portfolio__heading {
+    max-width: 1140px;
+    margin: auto;
+    color: #8B8B8B;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 20px;
+    padding-bottom: 55px;
+}
+
+.portfolio__project-list {
+    list-style-type: none;
+    max-width: 1140px;
+    margin: auto;
+    padding: 0 0 125px 0;
+}
+
+.portfolio__link {
+    text-decoration: none;
+    max-width: 1140px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 90px;
+    color: white;
+    border-bottom: 1px solid #424242;
+}
+
+/* .portfolio__link:last-child {
+    border: none;
+} */
+
+.portfolio__link-text {
+    max-width: 1140px;
+    font-size: 30px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.portfolio__link-icon {
+    width: 29px;
+    height: 60px;
+    object-fit: contain;
+}

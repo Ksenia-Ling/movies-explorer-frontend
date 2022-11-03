@@ -15,37 +15,37 @@ function Techs() {
             </p>
             <ul className='techs__list'>
                 <li className='techs__list-item'>
-                    <p className='techs__list-item__value'>
+                    <p className='techs__list-value'>
                         HTML
                     </p>
                 </li>
                 <li className='techs__list-item'>
-                    <p className='techs__list-item__value'>
+                    <p className='techs__list-value'>
                         CSS
                     </p>
                 </li>
                 <li className='techs__list-item'>
-                    <p className='techs__list-item__value'>
+                    <p className='techs__list-value'>
                         JS
                     </p>
                 </li>
                 <li className='techs__list-item'>
-                    <p className='techs__list-item__value'>
+                    <p className='techs__list-value'>
                         React
                     </p>
                 </li>
                 <li className='techs__list-item'>
-                    <p className='techs__list-item__value'>
+                    <p className='techs__list-value'>
                         Git
                     </p>
                 </li>
                 <li className='techs__list-item'>
-                    <p className='techs__list-item__value'>
+                    <p className='techs__list-value'>
                         Express.js
                     </p>
                 </li>
                 <li className='techs__list-item'>
-                    <p className='techs__list-item__value'>
+                    <p className='techs__list-value'>
                         MongoDB
                     </p>
                 </li>

@@ -8,28 +8,28 @@ function AboutProject() {
                 О проекте
             </h2>
             <ul className='project__info'>
-                <li className='project__info__description'>
-                    <h3 className='project__info__description-title'>
+                <li className='project__description'>
+                    <h3 className='project__description-title'>
                         Дипломный проект включал 5 этапов
                     </h3>
-                    <p className='project__info__description-text'>
-                        Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.
+                    <p className='project__description-text'>
+                        Составление плана, работу над бэкендом, вёрстку, добавление <br/> функциональности и финальные доработки.
                     </p>
                 </li>
-                <li className='project__info__description'>
-                    <h3 className='project__info__description-title'>
+                <li className='project__description'>
+                    <h3 className='project__description-title'>
                         На выполнение диплома ушло 5 недель
                     </h3>
-                    <p className='project__info__description-text'>
-                        У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.
+                    <p className='project__description-text'>
+                        У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было <br/> соблюдать, чтобы успешно защититься.
                     </p>
                 </li>
             </ul>
             <div className='project__time-bar'>
-                <p className='project__time-bar__length'>1 неделя</p>
-                <p className='project__time-bar__subtitle'>Back-end</p>
-                <p className='project__time-bar__length'>4 недели</p>
-                <p className='project__time-bar__subtitle'>Front-end</p>
+                <p className='project__length project__length_type_back'>1 неделя</p>
+                <p className='project__length project__length_type_front'>4 недели</p>
+                <p className='project__bar-subtitle'>Back-end</p>
+                <p className='project__bar-subtitle'>Front-end</p>
             </div>
         </section>
     );

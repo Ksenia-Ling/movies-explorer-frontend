@@ -1,6 +1,7 @@
 import React from 'react';
 import './AboutMe.css';
-// Импортировать фотку authorImg
+import authorImg from '../../images/AboutMe/student-photo.jpg';
+import Portfolio from '../Portfolio/Portfolio.js';
 
 function AboutMe() {
     return (
@@ -8,6 +9,8 @@ function AboutMe() {
             <h2 className='about-me__heading'>
                 Студент
             </h2>
+            <div className='about-me__container'>
+            <div className='about-me__info-container'>
             <h3 className='about-me__title'>
                 Ксения
             </h3>
@@ -25,9 +28,12 @@ function AboutMe() {
                 href='https://github.com/Ksenia-Ling'>
                 Github
             </a>
+            </div>
             <img className='about-me__image'
                 src={authorImg}
                 alt='фото автора работы' />
+                </div>
+                <Portfolio />
         </section>
     );
 }

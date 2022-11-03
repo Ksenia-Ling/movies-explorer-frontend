@@ -1,6 +1,6 @@
 import React from 'react';
 import './Promo.css';
-// Импортировать PromoPic
+import promoPic from '../../images/Promo/promo-art.svg'
 
 function Promo() {
     return (
@@ -8,10 +8,12 @@ function Promo() {
             <h1 className='promo__heading'>
                 Учебный проект студента факультета Веб-разработки.
             </h1>
-            <img
-                className='promo__art'
-                src={promoPic}
-                alt='арт к промо-блоку страницы' />
+            <div className='promo__art-container'>
+                <img
+                    className='promo__art'
+                    src={promoPic}
+                    alt='арт к промо-блоку страницы' />
+            </div>
         </header>
     );
 }
