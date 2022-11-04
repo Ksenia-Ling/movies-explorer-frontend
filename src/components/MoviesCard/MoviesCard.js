@@ -4,19 +4,14 @@ import './MoviesCard.css';
 
 function MoviesCard({ movie }) {
     const { pathname } = useLocation();
-    const [isLiked] = useState(false);
+    const [isLiked, setISLiked] = useState(false);
 
     function getMovieDuration(mins) {
         return `${Math.floor(mins / 60)}ч ${mins % 60}м`;
     }
 
     function handleLikeClick() {
-
-
-
-    }
-
-    function handleRemoveClick() {
+        setISLiked(!isLiked);
 
     }
 
@@ -28,20 +23,19 @@ function MoviesCard({ movie }) {
             />
             <div className='movies-card__container'>
                 <h2 className='movies-card__title'>{movie.nameRU}</h2>
-            {pathname === "/movies" ? (
-                <button
-                    className={`movies__button movies__like-button ${isLiked && "movies__like-button_active"
-                        }`}
-                    type='button'
-                    onClick={handleLikeClick}>
-                </button>
-            ) : (
-                <button
-                    className='movies__button movie__remove-button'
-                    type='button'
-                    onClick={handleRemoveClick}>
-                </button>
-            )}
+                {pathname === "/movies" ? (
+                    <button
+                        className={`movies__button movies__like-button ${isLiked && "movies__like-button_active"
+                            }`}
+                        type='button'
+                        onClick={handleLikeClick}>
+                    </button>
+                ) : (
+                    <button
+                        className='movies__button movie__remove-button'
+                        type='button'>
+                    </button>
+                )}
             </div>
             <p className='movies-card__duration'>{getMovieDuration(movie.duration)}</p>
         </li>

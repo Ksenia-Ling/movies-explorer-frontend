@@ -8,17 +8,17 @@ import SearchForm from "../SearchForm/SearchForm";
 function SavedMovies({ movies }) {
 
     const [isLoggedIn, setIsLoggedIn] = useState(true);
-    
+
     return (
-    <main className='saved-movies'>
-        <Header
-            isLoggedIn={isLoggedIn}
-        />
-        <SearchForm />
-        <MoviesCardList
-            initialMovies={movies} />
-        <Footer />
-    </main>
+        <main className='saved-movies'>
+            <Header
+                isLoggedIn={isLoggedIn}
+            />
+            <SearchForm />
+            <MoviesCardList
+                initialMovies={movies} />
+            <Footer />
+        </main>
     );
 }
 

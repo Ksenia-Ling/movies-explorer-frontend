@@ -21,3 +21,9 @@
     line-height: 18px;
     text-decoration: none;
 }
+
+@media all and (max-width: 1200px) {
+    .navigation {
+        max-width: calc(100% - 38px);
+    }
+}

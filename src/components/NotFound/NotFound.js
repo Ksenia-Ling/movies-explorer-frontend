@@ -9,11 +9,11 @@ function NotFound() {
                 404
             </h1>
             <p className='page-not-found__text'>
-            Страница не найдена
+                Страница не найдена
             </p>
             <Link className='page-not-found__return-link' to='/'>
-        Назад
-      </Link>
+                Назад
+            </Link>
         </main>
     );
 }

@@ -19,11 +19,11 @@ function Navigation() {
                 </NavLink>
             </div>
             <NavLink to='/profile'>
-            <img
-                className="navigation__accaunt-btn"
-                src={accauntBtn}
-                alt="Кнопка входа в аккаунт" />
-                </NavLink>
+                <img
+                    className="navigation__accaunt-btn"
+                    src={accauntBtn}
+                    alt="Кнопка входа в аккаунт" />
+            </NavLink>
         </nav>
     );
 }

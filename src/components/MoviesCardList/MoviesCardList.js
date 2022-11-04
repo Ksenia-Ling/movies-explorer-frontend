@@ -8,11 +8,13 @@ function MoviesCardList({ initialMovies }) {
 
     return (
         <section className='movies-container'>
-            <ul className='movies-container__list'>
-                {initialMovies.map((movie) => (
-                    <MoviesCard movie={movie} id={movie._id} />)
-                )}
-            </ul>
+            <div className='movies__grid'>
+                <ul className='movies-container__list'>
+                    {initialMovies.map((movie) => (
+                        <MoviesCard movie={movie} id={movie._id} />)
+                    )}
+                </ul>
+            </div>
             {pathname === '/movies' ? (
                 <div className='movies-container__more'>
                     <button className='movies-container__more-button'

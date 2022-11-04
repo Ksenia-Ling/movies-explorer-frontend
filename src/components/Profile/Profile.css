@@ -20,7 +20,7 @@
 }
 
 .profile__form {
-    width: 410px;
+    max-width: 410px;
     margin-bottom: 193px;
     box-sizing: border-box;
 }
@@ -64,6 +64,7 @@
     height: 45px;
     width: 360px;
     outline: none;
+    box-sizing: border-box;
 }
 
 .profile__btn {
@@ -83,4 +84,32 @@
 .profile__btn_type_logout {
     color: #EE3465;
     font-weight: 500;
+}
+
+@media all and (max-width: 768px) {
+    .profile__heading {
+        padding-top: 236px;
+    }
+}
+
+@media all and (max-width: 450px) {
+    .profile__heading {
+        padding-top: 70px;
+        padding-bottom: 64px;
+    }
+
+    .profile__input {
+        max-width: calc(100% - (30px*2));
+        font-weight: 500;
+        height: 43px;
+    }
+
+    .profile__form {
+        max-width: calc(100% - (30px*2));
+        margin-bottom: 363px;
+    }
+
+    .profile__form-input {
+        align-items: center;
+    }
 }

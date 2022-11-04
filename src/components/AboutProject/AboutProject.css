@@ -3,7 +3,7 @@
     color: white;
     box-sizing: border-box;
     font-family: "Inter", "Arial", sans-serif;
-    min-height: 608px;
+    min-height: 585px;
 }
 
 .project__heading {
@@ -44,6 +44,7 @@
 .project__description-text {
     font-size: 14px;
     font-weight: 400;
+    margin: 0;
 }
 
 .project__time-bar {
@@ -87,5 +88,85 @@
     text-align: center;
     margin: 0;
     border: none;
-    color:#8B8B8B;
+    color: #8B8B8B;
+}
+
+@media all and (max-width: 1200px) {
+    .project__heading {
+        max-width: calc(100% - (50px*2));
+        padding-top: 90px;
+    }
+
+    .project__info {
+        max-width: calc(100% - (50px*2));
+        column-gap: 30px;
+    }
+
+    .project__description {
+        padding-bottom: 93px;
+    }
+
+    .project__description-text {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .project__time-bar {
+        max-width: calc(100% - (50px*2));
+        grid-template-columns: minmax(140px, 1fr) 4fr;
+    }
+}
+
+@media all and (max-width: 580px) {
+    .project__time-bar {
+        grid-template-columns: 1fr 4fr;
+    }
+}
+
+@media all and (max-width: 530px) {
+    .project__heading {
+        max-width: calc(100% - (18px*2));
+        padding-top: 70px;
+    }
+
+    .project__info {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr;
+        gap: 56px;
+        max-width: calc(100% - (18px*2));
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .project__description {
+        padding: 0;
+    }
+
+    .project__description-title {
+        font-size: 18px;
+        line-height: 22px;
+        margin: 0 0 16px 0;
+    }
+
+    .project__description-text {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .project__time-bar {
+        max-width: calc(100% - (18px*2));
+        grid-template-columns: minmax(100px, 1fr) 4fr;
+        padding-bottom: 70px;
+    }
+
+    .project__length {
+        height: 35px;
+        font-size: 11px;
+    }
+
+    .project__bar-subtitle {
+        font-size: 11px;
+        font-weight: 400;
+    }
 }
