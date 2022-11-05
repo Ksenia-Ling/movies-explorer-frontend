@@ -16,7 +16,9 @@ function SearchForm() {
                         alt='иконка поиска' />
                 </button>
             </form>
+            <div className='search-form__switch'>
             <FilterCheckbox />
+            </div>
         </section>
     );
 }

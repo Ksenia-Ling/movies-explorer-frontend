@@ -12,7 +12,6 @@ function MoviesCard({ movie }) {
 
     function handleLikeClick() {
         setISLiked(!isLiked);
-
     }
 
     return (

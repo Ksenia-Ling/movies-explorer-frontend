@@ -27,6 +27,11 @@
     margin: 0;
     padding: 0;
     cursor: pointer;
+    transition: transform 0.3s linear;
+}
+
+.search-form__submit-button:hover {
+    transform: scale(1.1)
 }
 
 .search-form__input {
@@ -50,8 +55,15 @@
     .search-form__form {
         height: 54px;
     }
+
 }
 
+@media all and (max-width: 768px) {
+    .search-form__switch {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
 
 @media all and (max-width: 650px) {
     .search-form {
@@ -69,5 +81,10 @@
         line-height: 22px;
         font-weight: 500;
     }
+}
 
+@media all and (max-width: 500px) {
+    .search-form__switch {
+        justify-content: center;
+    }
 }

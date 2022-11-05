@@ -42,8 +42,11 @@
     line-height: 12px;
     font-weight: 400;
     color: #ee3465;
-    visibility: hidden;
     position: absolute;
+}
+
+.register__input_invalid {
+    color: #ee3465;
 }
 
 .register__error-span_type_name {
@@ -56,5 +59,4 @@
 
 .register__error-span_type_password {
     top: 210px;
-    visibility: visible;
 }

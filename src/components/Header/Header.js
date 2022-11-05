@@ -1,17 +1,17 @@
 import React from 'react';
 import { Switch, Route, NavLink, useLocation, Link } from 'react-router-dom';
+import { useState } from 'react';
 import './Header.css';
 import Navigation from '../Navigation/Navigation.js';
 import logo from '../../images/Header/logo.svg';
+// import NavTab from '../NavTab/NavTab';
 
 function Header({ isLoggedIn }) {
     const { pathname } = useLocation();
+    // const [isOpen, setIsOpen] = useState(false);
 
-    // const headerMain = {
-    //     backgroundColor: "#073042",
-    // }
-    // const headerRest = {
-    //     backgroundColor: "#20202",
+    // function handleMenuClick() {
+    //     setIsOpen(!isOpen);
     // }
 
     return (
@@ -24,6 +24,9 @@ function Header({ isLoggedIn }) {
                         src={logo}
                         alt="лого 'Movie Explorer'" />
                 </Link>
+                <button className="header__menu" 
+                // onClick={handleMenuClick}/
+                />
                 {!isLoggedIn ?
                     <Switch>
                         <Route path="/">
@@ -40,6 +43,7 @@ function Header({ isLoggedIn }) {
                     :
                     <Navigation />
                 }
+                {/* <NavTab /> */}
             </div>
         </header>
     );

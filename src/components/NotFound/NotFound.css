@@ -31,6 +31,12 @@
     line-height: 17px;
     font-weight: 400;
     text-decoration: none;
+    transition: color 0.3s linear;
+}
+
+.page-not-found__return-link:hover {
+    opacity: 0.7;
+    color: white;
 }
 
 @media all and (max-width: 768px) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navigation.css';
-import accauntBtn from '../../images/Header/accaunt.svg';
+import accountBtn from '../../images/Header/account.svg';
 
 function Navigation() {
     return (
@@ -20,8 +20,8 @@ function Navigation() {
             </div>
             <NavLink to='/profile'>
                 <img
-                    className="navigation__accaunt-btn"
-                    src={accauntBtn}
+                    className="navigation__account-btn"
+                    src={accountBtn}
                     alt="Кнопка входа в аккаунт" />
             </NavLink>
         </nav>

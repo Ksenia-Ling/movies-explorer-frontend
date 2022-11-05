@@ -47,6 +47,11 @@
     font-size: 13px;
     font-weight: 400;
     line-height: 16px;
+    transition: opacity 0.3s linear;
+}
+
+.footer__link {
+    opacity: 0.7;
 }
 
 @media all and (max-width: 1200px) {

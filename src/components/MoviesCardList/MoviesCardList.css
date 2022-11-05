@@ -35,6 +35,11 @@
     font-weight: 500px;
     line-height: 15px;
     cursor: pointer;
+    transition: opacity 0.3s linear;
+}
+
+.movies-container__more-button:hover {
+    opacity: 0.7;
 }
 
 @media all and (max-width: 1200px) {

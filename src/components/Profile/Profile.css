@@ -73,6 +73,11 @@
     border: none;
     background-color: #202020;
     cursor: pointer;
+    transition: opacity 0.3s linear;
+}
+
+.profile__btn:hover {
+    opacity: 0.7;
 }
 
 .profile__btn_type_edit {

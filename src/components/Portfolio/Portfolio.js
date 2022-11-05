@@ -9,7 +9,7 @@ function Portfolio() {
                 Портфолио
             </h2>
             <ul className='portfolio__project-list'>
-                <li className='portfolio__project-list__item'>
+                <li className='portfolio__project-list-item'>
                     <a className='portfolio__link'
                         target={'_blank'}
                         href='https://github.com/Ksenia-Ling/how-to-learn'
@@ -23,7 +23,7 @@ function Portfolio() {
                         />
                     </a>
                 </li>
-                <li className='portfolio__project-list__item'>
+                <li className='portfolio__project-list-item'>
                     <a className='portfolio__link'
                         target={'_blank'}
                         href='https://github.com/Ksenia-Ling/russian-travel'
@@ -37,7 +37,7 @@ function Portfolio() {
                         />
                     </a>
                 </li>
-                <li className='portfolio__project-list__item'>
+                <li className='portfolio__project-list-item'>
                     <a className='portfolio__link'
                         target={'_blank'}
                         href='https://github.com/Ksenia-Ling/react-mesto-api-full'

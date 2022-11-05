@@ -1,10 +1,12 @@
 import React from 'react';
 import './Login.css';
-import { Link } from "react-router-dom";
-import logo from '../../images/Header/logo.svg';
 import AuthForm from '../AuthForm/AuthForm';
+import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
 function Login() {
+
+    const { values, handleChange, errors } = useFormWithValidation({ email: '', password: '' });
+
     return (
         <main className='login'>
             <AuthForm
@@ -19,31 +21,36 @@ function Login() {
 
                 <input
                     type="email"
-                    className="login__input"
+                    className={`login__input ${errors.email !== '' ? "login__input_invalid" : ""
+                        }`}
                     name="email"
                     id="login-email-input"
                     placeholder=""
                     minLength="4"
                     maxLength="40"
                     required
+                    value={values.email}
+                    onChange={handleChange}
                 />
-                <span className='login__error-span login__error-span_type_email'>Что-то пошло не так...</span>
+                <span className='login__error-span login__error-span_type_email'>{errors.email}</span>
 
                 <label htmlFor="login-password-input"
                     className="login__input-label">Пароль</label>
 
                 <input
                     type="password"
-                    className="login__input"
+                    className={`login__input ${errors.password !== '' ? "login__input_invalid" : ""
+                        }`}
                     name="password"
                     id="login-password-input"
                     placeholder=""
                     minLength="6"
                     maxLength="240"
                     required
+                    value={values.password}
+                    onChange={handleChange}
                 />
-                <span className='login__error-span login__error-span_type_password'>Что-то пошло не так...</span>
-
+                <span className='login__error-span login__error-span_type_password'>{errors.password}</span>
 
             </AuthForm>
         </main >

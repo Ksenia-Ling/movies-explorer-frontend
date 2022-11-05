@@ -67,6 +67,11 @@
     font-weight: 500;
     color: #FFFFFF;
     text-decoration: none;
+    transition: opacity 0.3s linear;
+}
+
+.about-me__link {
+    opacity: 0.7;
 }
 
 @media all and (max-width: 1200px) {
@@ -135,7 +140,7 @@
     .about-me__image {
         order: 1;
         width: 292px;
-        height: 352px;
+        min-height: 100%;
         object-fit: cover;
         justify-self: start;
         box-sizing: border-box;
