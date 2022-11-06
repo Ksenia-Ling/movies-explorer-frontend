@@ -70,7 +70,7 @@
     transition: opacity 0.3s linear;
 }
 
-.about-me__link {
+.about-me__lin:hover {
     opacity: 0.7;
 }
 

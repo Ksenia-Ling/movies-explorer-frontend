@@ -20,6 +20,11 @@
     font-weight: 400;
     line-height: 18px;
     text-decoration: none;
+    transition: opacity 0.3s linear;
+}
+
+.navigation__link:hover {
+   opacity: 0.7
 }
 
 .navigation__account-btn {
@@ -33,5 +38,11 @@
 @media all and (max-width: 1200px) {
     .navigation {
         max-width: calc(100% - 38px);
+    }
+}
+
+@media all and (max-width: 768px) {
+    .navigation {
+        display: none;
     }
 }

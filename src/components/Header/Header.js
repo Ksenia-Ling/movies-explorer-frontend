@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, NavLink, useLocation, Link } from 'react-router-dom';
-import { useState } from 'react';
+// import { useState } from 'react';
 import './Header.css';
 import Navigation from '../Navigation/Navigation.js';
 import logo from '../../images/Header/logo.svg';
@@ -25,12 +25,12 @@ function Header({ isLoggedIn }) {
                         alt="лого 'Movie Explorer'" />
                 </Link>
                 <button className="header__menu" 
-                // onClick={handleMenuClick}/
+                // onClick={handleMenuClick}/>
                 />
                 {!isLoggedIn ?
                     <Switch>
                         <Route path="/">
-                            <nav className={`header__navigation ${!isLoggedIn && "header__auth"}`}>
+                            <nav className="header__auth">
                                 <NavLink to="/signup" className="header__link header__link_type_auth">
                                     Регистрация
                                 </NavLink>

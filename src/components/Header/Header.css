@@ -26,10 +26,6 @@
     opacity: 0.7;
 }
 
-.header__navigation {
-    height: 32px;
-}
-
 .header__auth {
     height: 32px;
     display: flex;
@@ -51,6 +47,11 @@
     font-weight: 500;
     line-height: 32px;
     text-decoration: none;
+    transition: opacity 0.3s linear;
+}
+
+.header__link:hover {
+    opacity: 0.7;
 }
 
 .header__link_type_login {
@@ -98,7 +99,7 @@
         display: block;
     }
 
-    .header__link {
+    .header__auth {
         display: none;
     }
 

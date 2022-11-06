@@ -13,7 +13,7 @@
     height: 60px;
 }
 
-.search-form__form:hover {
+.search-form__form:focus-within {
     border-bottom: #4285F4 1px solid;
     transition: .3s border-bottom ease-in;
 }

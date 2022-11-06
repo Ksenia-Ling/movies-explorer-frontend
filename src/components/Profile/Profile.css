@@ -38,7 +38,8 @@
     margin-bottom: 3px;
 }
 
-.profile__form-input:hover {
+
+.profile__form-input:focus-within {
     border-bottom: #4285F4 1px solid;
     transition: .3s border-bottom ease-in;
 }

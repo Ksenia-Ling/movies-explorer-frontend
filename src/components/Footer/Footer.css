@@ -50,7 +50,7 @@
     transition: opacity 0.3s linear;
 }
 
-.footer__link {
+.footer__link:hover {
     opacity: 0.7;
 }
 

@@ -42,8 +42,11 @@
     line-height: 12px;
     font-weight: 400;
     color: #ee3465;
-    visibility: hidden;
     position: absolute;
+}
+
+.login__input_invalid {
+    color: #ee3465;
 }
 
 .login__error-span_type_email {
