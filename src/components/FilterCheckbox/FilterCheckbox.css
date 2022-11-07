@@ -22,7 +22,8 @@
 }
 
 .filter-checkbox__switch:before {
-    background-color: #F5F5F5;
+    /* background-color: #F5F5F5; */
+    background-color: #2BE080;
     border-radius: 50%;
     width: 8px;
     height: 8px;
@@ -43,6 +44,7 @@
 
 .filter-checkbox__input:checked+.filter-checkbox__switch:before {
     left: 22px;
+    background-color: #F5F5F5;
 }
 
 .filter-checkbox__input {
