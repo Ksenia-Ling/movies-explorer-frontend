@@ -1,27 +1,28 @@
+
 .nav-tab {
+  visibility: hidden;
   z-index: 3;
   display: flex;
-  opacity: 0;
-  visibility: hidden;
   height: 100%;
-  width: 520px;
+  width: 0;
   position: fixed;
   top: 0;
-  right: 0;
+  right: -50%;
   background-color: #202020;
   justify-content: center;
-  transition: visibility ease-in-out 0.3s, opacity 0.3s ease-in-out;
+  transition: width ease-in-out 0.3s, right ease-in-out 0.3s, visibility ease-in-out 0.3s;
 }
 
 .nav-tab_active {
   visibility: visible;
-  opacity: 1;
+  width: 520px;
+  right: 0;
 }
 
 .nav-tab__close-btn {
   position: fixed;
-  top: 22px;
   right: 22px;
+  top: 22px;
   width: 32px;
   height: 32px;
   border: none;
@@ -84,7 +85,7 @@
 }
 
 @media all and (max-width: 520px) {
-  .nav-tab {
+  .nav-tab_active {
       width: 100%;
   }
 
