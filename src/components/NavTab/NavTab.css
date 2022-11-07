@@ -1,92 +1,99 @@
 .nav-tab {
-    z-index: 4;
-    display: flex;
-    opacity: 0;
-    visibility: hidden;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    align-items: center;
-    justify-content: center;
-    transition: visibility ease-in-out 0.3s, opacity 0.3s ease-in-out;
+  z-index: 3;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  height: 100%;
+  width: 520px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #202020;
+  justify-content: center;
+  transition: visibility ease-in-out 0.3s, opacity 0.3s ease-in-out;
 }
 
 .nav-tab_active {
-    visibility: visible;
+  visibility: visible;
+  opacity: 1;
 }
 
-.nav-tab__close-btn{
-    width: 32px;
-    height: 32px;
-    padding-top: 23px;
-    padding-right: 23px;
-    border: none;
-    align-self: flex-end;
-    box-sizing: border-box;
-    display: block;
-    background: none;
-    background-size: contain;
-    background-image: url("../../images/NavTab/cross.svg");
-  }
-  
-  .nav-tab__close-btn:hover {
-    opacity: 0.7;
-    cursor: pointer;
-  }
-  
-  .nav-tab__bar {
-    position: relative;
-    width: 520px;
-    height: 100vh;
-    margin-top: 159px;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #202020;
-    ;
-  }
-  
-  .nav-tab__link {
-    font-size: 18px;
-    line-height: 1.22;
-    text-decoration: none;
-    font-style: normal;
-    font-weight: 500;
-    text-align: center;
-    color: #ffffff;
-    margin-bottom: 28px;
-  }
-  
-  .nav-tab__link:hover {
-    opacity: 0.7;
-  }
-  
-  .nav-tab__link_active {
-    border-bottom: 2px solid #ffffff;
-    margin-bottom: 22px;
-    padding-bottom: 4px;
-  }
-  
-  .nav-tab__profile-link {
-    padding-top: 597px;
-    vertical-align: middle;
-  }
-  
-  .nav-tab__profile-link:hover {
-    opacity: 0.7;
+.nav-tab__close-btn {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  background-size: contain;
+  background-image: url("../../images/NavTab/cross.svg");
+  transition: transform 0.3s linear;
+}
+
+.nav-tab__close-btn:hover {
+  transform: rotate(-45deg);
+  cursor: pointer;
+}
+
+.nav-tab__bar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-tab__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  margin-top: 160px;
+}
+
+.nav-tab__link {
+  font-size: 18px;
+  line-height: 1.22;
+  text-decoration: none;
+  font-weight: 500;
+  color: #ffffff;
+  transition: opacity 0.3s linear;
+}
+
+.nav-tab__link:hover {
+  opacity: 0.7;
+}
+
+.nav-tab__link_active {
+  border-bottom: 2px solid #ffffff;
+  padding-bottom: 4px;
+}
+
+.nav-tab__profile-link {
+  margin-bottom: 90px;
+  transition: opacity 0.3s linear;
+}
+
+.nav-tab__profile-link:hover {
+  opacity: 0.7;
+}
+
+@media all and (max-width: 520px) {
+  .nav-tab {
+      width: 100%;
   }
 
-  .nav-tab__account {
-    background: transparent;
-    border-radius: 50px;
-    width: 100px;
-    height: 32px;
-    object-fit: contain;
-    margin-left: 7px;
-    vertical-align: middle;
+  .nav-tab__list {
+      margin-top: 144px;
+      gap: 24px;
   }
-  
+
+  .nav-tab__profile-link {
+      margin-bottom: 46px;
+  }
+}

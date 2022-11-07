@@ -19,7 +19,7 @@
 }
 
 .promo__art {
-  max-width: 722px;
+  max-width: 100%;
   max-height: 244px;
   padding-bottom: 73px;
   margin-right: 70px;
@@ -48,7 +48,7 @@
 
   .promo__art {
     margin: 0;
-    max-width: 680px;
+    max-width: 100%;
     max-height: 230px;
   }
 
@@ -59,7 +59,7 @@
   }
 }
 
-@media all and (max-width: 420px) {
+@media all and (max-width: 500px) {
   .promo__container {
     max-width: calc(100% - (10px*2));
     /* min-height: 630px; */
@@ -78,5 +78,14 @@
 
   .promo__art {
     padding-bottom: 40px;
+    max-width: 680px;
   }
+
+  .promo__art-container {
+    width: 100vw;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
 }
+

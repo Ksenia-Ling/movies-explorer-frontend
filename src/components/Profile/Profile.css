@@ -44,6 +44,11 @@
     transition: .3s border-bottom ease-in;
 }
 
+.profile__form-input:hover {
+    border-bottom: #4285F4 1px solid;
+    transition: .3s border-bottom ease-in;
+}
+
 .profile__input-title {
     height: 45px;
     margin: 0;

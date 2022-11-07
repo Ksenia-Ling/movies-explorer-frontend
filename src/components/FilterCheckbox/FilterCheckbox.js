@@ -4,9 +4,9 @@ import './FilterCheckbox.css';
 function FilterCheckbox() {
     return (
         <label className='filter-checkbox'>
-            <input class='filter-checkbox__input' type='checkbox' />
-            <div class='filter-checkbox__switch'></div>
-            <span class='filter-checkbox__label'>Короткометражки</span>
+            <input className='filter-checkbox__input' type='checkbox' />
+            <div className='filter-checkbox__switch'></div>
+            <span className='filter-checkbox__label'>Короткометражки</span>
         </label>
     );
 }
