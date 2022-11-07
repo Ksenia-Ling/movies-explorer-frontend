@@ -8,7 +8,6 @@
   flex-direction: column;
   justify-content: space-between;
   margin: auto;
-  /* min-height: 560px; */
   color: white;
 }
 
@@ -62,7 +61,6 @@
 @media all and (max-width: 500px) {
   .promo__container {
     max-width: calc(100% - (10px*2));
-    /* min-height: 630px; */
     padding-top: 183px;
     justify-content: flex-start;
   }
@@ -82,7 +80,7 @@
   }
 
   .promo__art-container {
-    width: 100vw;
+    width: calc(100vw - 20px);
     justify-content: center;
     overflow: hidden;
   }
