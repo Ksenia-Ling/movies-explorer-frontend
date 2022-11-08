@@ -3,13 +3,23 @@ import './Login.css';
 import AuthForm from '../AuthForm/AuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
-function Login() {
+function Login({ onLogin }) {
 
     const { values, handleChange, errors } = useFormWithValidation({ email: '', password: '' });
+
+    function handleSubmit(evt) {
+        evt.preventDefault();
+        if (!values.email || !values.password) {
+            return
+        }
+        onLogin(values);
+    }
 
     return (
         <main className='login'>
             <AuthForm
+
+                onSubmit={handleSubmit}
                 heading="Рады видеть!"
                 submitBtnText="Войти"
                 route="/signup"

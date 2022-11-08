@@ -1,9 +1,10 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './AuthForm.css';
 import logo from '../../images/Header/logo.svg';
 
-function AuthForm({ heading, children, submitBtnText, route, message, linkText }) {
+function AuthForm({ onSubmit, heading, children, submitBtnText, route, message, linkText }) {
+
     return (
         <section className='auth-form'>
             <div className='auth-form__container'>
@@ -18,7 +19,8 @@ function AuthForm({ heading, children, submitBtnText, route, message, linkText }
                     {heading}
                 </h1>
 
-                <form className='auth-form__form'>
+                <form className='auth-form__form'
+                onSubmit={onSubmit}>
 
                     {children}
 

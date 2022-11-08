@@ -5,9 +5,7 @@ import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 
-function SavedMovies({ movies }) {
-
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+function SavedMovies({ isLoggedIn, movies }) {
 
     return (
         <main className='saved-movies'>

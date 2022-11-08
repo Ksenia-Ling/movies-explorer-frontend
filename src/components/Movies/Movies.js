@@ -6,9 +6,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 
-function Movies({ movies }) {
-
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+function Movies({ isLoggedIn, movies }) {
 
     return (
         <main className='movies'>
