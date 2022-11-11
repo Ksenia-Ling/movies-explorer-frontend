@@ -1,0 +1,106 @@
+.footer {
+    min-height: 172px;
+    background-color: #202020;
+    color: white;
+    box-sizing: border-box;
+}
+
+.footer__text {
+    max-width: 1140px;
+    color: #8B8B8B;
+    margin: auto;
+    padding-top: 59px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 56px;
+    font-weight: 400px;
+    border-bottom: #424242 solid 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer__container {
+    max-width: 1140px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer__copyright-year {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    margin: 0;
+}
+
+.footer__links {
+    display: flex;
+    list-style: none;
+}
+
+.footer__link {
+    color: white;
+    text-decoration: none;
+    padding-left: 20px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    transition: opacity 0.3s linear;
+}
+
+.footer__link:hover {
+    opacity: 0.7;
+}
+
+@media all and (max-width: 1200px) {
+    .footer__text {
+        max-width: calc(100% - (50px*2));
+    }
+
+    .footer__container {
+        max-width: calc(100% - (50px*2));
+    }
+}
+
+@media all and (max-width: 500px) {
+    .footer {
+        min-height: 243px;
+    }
+
+    .footer__text {
+        max-width: calc(100% - (10px*2));
+        font-size: 12px;
+        line-height: 54px;
+        padding-top: 58px;
+    }
+
+    .footer__container {
+        max-width: calc(100% - (10px*2));
+        font-size: 12px;
+        line-height: 15px;
+        flex-direction: column-reverse;
+    }
+
+    .footer__links {
+        flex-direction: column;
+        padding: 30px 0 0 0;
+        margin-bottom: 30px;
+        align-items: center;
+        height: 36px;
+        justify-content: space-between;
+    }
+
+    .footer__link {
+        font-size: 12px;
+        line-height: 15px;
+        padding: 0;
+    }
+
+    .footer__copyright-year {
+        color: #8B8B8B;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

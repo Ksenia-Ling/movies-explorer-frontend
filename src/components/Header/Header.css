@@ -1,0 +1,128 @@
+.header {
+    background-color: #073042;
+    font-family: "Inter", "Arial", sans-serif;
+}
+
+.header_color_dark {
+    background-color: #202020;
+}
+
+.header__container {
+    max-width: 1140px;
+    min-height: 74px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+}
+
+.header__logo {
+    width: 38px;
+    height: 38px;
+    transition: opacity 0.3s linear;
+}
+
+.header__logo:hover {
+    opacity: 0.7;
+}
+
+.header__auth {
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__home-link {
+    transition: opacity 0.3s linear;
+    cursor: pointer;
+}
+
+.header__home-link:hover {
+    opacity: 0.7;
+}
+
+.header__link {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 32px;
+    text-decoration: none;
+    transition: opacity 0.3s linear;
+}
+
+.header__link:hover {
+    opacity: 0.7;
+}
+
+.header__link_type_login {
+    color: black;
+    width: 76px;
+    background-color: #3DDC84;
+    border-radius: 3px;
+    border: transparent;
+    text-align: center;
+}
+
+.header__link_type_auth {
+    color: white;
+    padding-right: 30px;
+}
+
+.header__menu {
+    height: 44px;
+    width: 44px;
+    box-sizing: border-box;
+    display: block;
+    background: transparent;
+    border: none;
+    background-image: url("../../images/Header/burger-icon.svg");
+    background-size: contain;
+    padding: 0;
+    cursor: pointer;
+    transition: opacity 0.3s linear;
+    display: none;
+}
+
+.header__menu:hover {
+    opacity: 0.7;
+}
+
+@media all and (max-width: 1200px) {
+    .header__container {
+        max-width: calc(100% - (30px*2));
+    }
+}
+
+@media all and (max-width: 768px) {
+
+    .header__menu {
+        display: block;
+    }
+
+    .header__auth {
+        display: none;
+    }
+
+    .header__container {
+        max-width: calc(100% - (30px*2));
+    }
+
+}
+
+@media all and (max-width: 320px) {
+    .header__container {
+        max-width: calc(100% - (14px*2));
+    }
+
+    .header__link {
+        line-height: 26px;
+    }
+
+    .header__link_type_login {
+        width: 54px;
+    }
+
+    .header__link_type_auth {
+        padding-right: 14px;
+    }
+}
