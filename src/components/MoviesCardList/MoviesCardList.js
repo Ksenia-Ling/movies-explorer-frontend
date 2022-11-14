@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard.js';
 import './MoviesCardList.css';
 
-function MoviesCardList({ isCompleted, onShowMore, initialMovies, likedMovies, onMovieLike, onMovieDelete }) {
+function MoviesCardList({ isCompleted, onShowMore, initialMovies, savedMovies, onMovieLike, onMovieDelete }) {
     const { pathname } = useLocation();
 
     return (
@@ -12,7 +12,7 @@ function MoviesCardList({ isCompleted, onShowMore, initialMovies, likedMovies, o
                 <ul className='movies-container__list'>
                     {initialMovies.map((movie) => (
                         <MoviesCard
-                            likedMovies={likedMovies}
+                            savedMovies={savedMovies}
                             movie={movie}
                             initialMovies={initialMovies}
                             onMovieLike={onMovieLike}

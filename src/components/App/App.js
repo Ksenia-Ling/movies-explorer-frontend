@@ -20,13 +20,16 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
-  const [likedMovies, setLikedMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
 
   useEffect(() => {
     if (isLoggedIn) {
-      mainApi
-        .getUserInfo()
-        .then(setCurrentUser)
+      Promise.all([mainApi.getUserInfo(), mainApi.getSavedMovies()])
+        .then(([userInfo, movies]) => {
+          setCurrentUser(userInfo)
+          setSavedMovies(movies)
+          localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+        })
         .catch(console.log)
     }
   }, [isLoggedIn])
@@ -96,14 +99,15 @@ function App() {
 
   function handleMovieLike(movie) {
     // const isLiked = likedMovies.some((i) => i.movieId === movie.id);
-    const isLiked = likedMovies.some((i) => i.movieId === movie.id);
-    if (!isLiked) {
+    const isSaved = savedMovies.some((i) => i.movieId === movie.id);
+    if (!isSaved) {
       mainApi
         .addMovie(movie)
         .then((newMovie) => {
-          const moviesArr = Object.assign([], likedMovies);
+          const moviesArr = Object.assign([], savedMovies);
           moviesArr.push(newMovie);
-          setLikedMovies(moviesArr);
+          setSavedMovies(moviesArr);
+          localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
         })
         .catch(console.log);
     } else {
@@ -112,11 +116,13 @@ function App() {
   };
 
   function handleMovieDelete(movie) {
+    const id = movie.movieId || movie.id;
     mainApi
-      .deleteMovie(movie.movieId)
+      .deleteMovie(id)
       .then(() => {
-        const updMoviesArr = likedMovies.filter((i) => i.movieId !== movie.movieId);
-        setLikedMovies(updMoviesArr)
+        const updMoviesArr = savedMovies.filter((i) => i.movieId !== id);
+        setSavedMovies(updMoviesArr)
+        localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
       })
       .catch(console.log);
   };
@@ -131,7 +137,7 @@ function App() {
           </Route>
           <Route exact path='/movies'>
             <Movies
-
+              savedMovies={savedMovies}
               isLoggedIn={isLoggedIn}
               onMovieLike={handleMovieLike}
               onMovieDelete={handleMovieDelete}
@@ -139,6 +145,7 @@ function App() {
           </Route>
           <Route exact path='/saved-movies'>
             <SavedMovies
+              savedMovies={savedMovies}
               isLoggedIn={isLoggedIn}
               movies={initialMovies}
               onMovieDelete={handleMovieDelete}

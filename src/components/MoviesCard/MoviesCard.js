@@ -4,7 +4,7 @@ import './MoviesCard.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 // import { initialMovies } from '../../utils/initialMovies';
 
-function MoviesCard({ movie, initialMovies, likedMovies, onMovieLike, onMovieDelete }) {
+function MoviesCard({ movie, initialMovies, savedMovies, onMovieLike, onMovieDelete }) {
 
     const { pathname } = useLocation();
     const currentUser = useContext(CurrentUserContext);
@@ -14,7 +14,7 @@ function MoviesCard({ movie, initialMovies, likedMovies, onMovieLike, onMovieDel
     }
     // const isOwn = movie.owner === currentUser._id;
 
-    const isLiked = initialMovies.some((i) => i.movieId === movie.movieId);
+    const isSaved = savedMovies.some((i) => i.movieId === movie.id);
 
     function handleLikeClick() {
         onMovieLike(movie)
@@ -46,7 +46,7 @@ function MoviesCard({ movie, initialMovies, likedMovies, onMovieLike, onMovieDel
                 <h2 className='movies-card__title'>{movie.nameRU}</h2>
                 {pathname === "/movies" ? (
                     <button
-                        className={`movies__button movies__like-button ${isLiked && "movies__like-button_active"}`}
+                        className={`movies__button movies__like-button ${isSaved && "movies__like-button_active"}`}
                         type='button'
                         onClick={handleLikeClick}>
                     </button>

@@ -6,20 +6,21 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 import { mainApi } from '../../utils/MainApi';
 
-function SavedMovies({ isLoggedIn, onMovieLike, onMovieDelete }) {
+function SavedMovies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
     const [checkBox, setCheckBox] = useState(false);
     // const [isSearchValid, setIsSearchValid] = useState(true);
-    const [savedMovies, setSavedMovies] = useState([])
+    // const [savedMovies, setSavedMovies] = useState([])
     const [request, setRequest] = useState('');
 
-    useEffect(() => {
-        mainApi
-            .getSavedMovies()
-            .then((movies) => {
-                setSavedMovies(movies);
-            })
-            .catch(console.log)
-    }, [])
+    // useEffect(() => {
+    //     mainApi
+    //         .getSavedMovies()
+    //         .then((movies) => {
+    //             setSavedMovies(movies);
+                
+    //         })
+    //         .catch(console.log)
+    // }, [])
 
     function handleCheckboxToggle() {
         setCheckBox(!checkBox);
@@ -36,14 +37,14 @@ function SavedMovies({ isLoggedIn, onMovieLike, onMovieDelete }) {
         const shortMovies = filteredMoviesArr.filter(({ duration }) => duration <= 40);
         // const searchResult = checkBox ? filteredMoviesArr.filter(({ duration }) => duration <= 40) : filteredMoviesArr;
 
-        if (checkBox) {
-            setSavedMovies(shortMovies)
-        } else if (filteredMoviesArr.length !== 0) {
-            setSavedMovies(filteredMoviesArr)
-        } else {
-            setSavedMovies([])
-        }
-        return;
+        // if (checkBox) {
+        //     setSavedMovies(shortMovies)
+        // } else if (filteredMoviesArr.length !== 0) {
+        //     setSavedMovies(filteredMoviesArr)
+        // } else {
+        //     setSavedMovies([])
+        // }
+        // return;
     }
 
     return (
@@ -60,7 +61,7 @@ function SavedMovies({ isLoggedIn, onMovieLike, onMovieDelete }) {
                 onSubmit={handleSavedMovies}
             />
             <MoviesCardList
-                likedMovies={savedMovies}
+                savedMovies={savedMovies}
                 initialMovies={savedMovies}
                 onMovieLike={onMovieLike}
                 onMovieDelete={onMovieDelete}

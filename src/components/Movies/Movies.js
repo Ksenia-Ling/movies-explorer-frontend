@@ -7,12 +7,13 @@ import Footer from '../Footer/Footer';
 import { moviesApi } from '../../utils/MoviesApi';
 
 
-function Movies({ likedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
+function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
 
     const [checkBox, setCheckBox] = useState(false);
     const [request, setRequest] = useState('');
 
     // стейты для поиска и отображения фильмов
+    const [movies, setMovies] = useState([]);
     const [moviesPerPage, setMoviesPerPage] = useState(0);
     const [moviesToShow, setMoviesToShow] = useState([]);
     const [next, setNext] = useState(0);
@@ -22,7 +23,10 @@ function Movies({ likedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
     useEffect(() => {
         setCheckBox(localStorage.getItem('checkbox'));
         setRequest(localStorage.getItem('request'));
-        setMoviesToShow(JSON.parse(localStorage.getItem('movies')));
+        setMoviesToShow(JSON.parse(localStorage.getItem('movies')) || []);
+        if(JSON.parse(localStorage.getItem('movies')) !== null) {
+            setMovies(JSON.parse(localStorage.getItem('movies')))
+        };
     }, []);
 
     window.addEventListener('resize', function () {
@@ -99,18 +103,20 @@ function Movies({ likedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
         moviesApi
             .getMovies()
             .then((movies) => {
-                const shortMovies = movies.filter(function (movie) {
-                    return movie.duration <= 40
-                });
-                if (checkBox) {
-                    localStorage.setItem('checkBox', 'true');
-                    handleFilterMovies(shortMovies, request)
-                } else {
-                    localStorage.setItem('checkBox', 'false')
-                    handleFilterMovies(movies, request);
-                    return;
-                }
-                localStorage.setItem('request', request);
+                setMovies(movies);
+                localStorage.setItem('movies', JSON.stringify(movies));
+                // const shortMovies = movies.filter(function (movie) {
+                //     return movie.duration <= 40
+                // });
+                // if (checkBox) {
+                //     localStorage.setItem('checkBox', 'true');
+                //     handleFilterMovies(shortMovies, request)
+                // } else {
+                //     localStorage.setItem('checkBox', 'false')
+                //     handleFilterMovies(movies, request);
+                //     return;
+                // }
+                // localStorage.setItem('request', request);
             })
             .catch((err) => {
                 console.log(err);
@@ -131,6 +137,7 @@ function Movies({ likedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
                 onSubmit={handleSearchCheck}
             />
             <MoviesCardList
+                savedMovies={savedMovies}
                 initialMovies={moviesToShow}
                 isCompleted={isCompleted}
                 onShowMore={handleShowMoreMovies}
@@ -141,6 +148,5 @@ function Movies({ likedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
         </main>
     );
 }
-
 
 export default Movies;
