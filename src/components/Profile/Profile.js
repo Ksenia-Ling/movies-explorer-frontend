@@ -17,9 +17,9 @@ function Profile({ isLoggedIn, onEditProfile, onLogout }) {
     }, [currentUser]);
 
     useEffect(() => {
-        values.name === currentUser.name && values.email === currentUser.email
-            ? setIsValid(false)
-            : setIsValid(true)
+        if (values.name === currentUser.name && values.email === currentUser.email) {
+            setIsValid(false)
+        }
     }, [currentUser, setIsValid, values]);
 
     function handleSubmit(evt) {
@@ -38,7 +38,7 @@ function Profile({ isLoggedIn, onEditProfile, onLogout }) {
                 isLoggedIn={isLoggedIn}
             />
             <div className='profile__container'>
-                <h1 className='profile__heading'>Привет,{currentUser.name}</h1>
+                <h1 className='profile__heading'>Привет, {currentUser.name}</h1>
                 <form className='profile__form'
                     onSubmit={handleSubmit}>
                     <div className='profile__form-input'>

@@ -87,7 +87,7 @@ function App() {
 
   function handleEditProfile(userInfo) {
     mainApi
-      .editProfile(userInfo.name, userInfo.email)
+      .editUserInfo(userInfo)
       .then((newInfo) => {
         setCurrentUser(newInfo);
       })
