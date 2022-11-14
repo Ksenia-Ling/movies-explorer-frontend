@@ -35,7 +35,12 @@
     font-weight: 500px;
     line-height: 15px;
     cursor: pointer;
+    visibility: visible;
     transition: opacity 0.3s linear;
+}
+
+.movies-container__more-button_disabled {
+    visibility: hidden;
 }
 
 .movies-container__more-button:hover {

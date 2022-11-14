@@ -21,8 +21,9 @@
 
 .profile__form {
     max-width: 410px;
-    margin-bottom: 193px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile__form-input {
@@ -89,7 +90,17 @@
 .profile__btn_type_edit {
     color: white;
     font-weight: 400;
+    padding-top: 193px;
     padding-bottom: 16px;
+    cursor: pointer;
+}
+
+.profile__btn_type_edit_disabled {
+    color: grey;
+    font-weight: 400;
+    padding-top: 193px;
+    padding-bottom: 16px;
+    cursor: default;
 }
 
 .profile__btn_type_logout {
@@ -117,7 +128,10 @@
 
     .profile__form {
         max-width: calc(100% - (30px*2));
-        margin-bottom: 363px;
+    }
+
+    .profile__btn_type_edit {
+        padding-top: 363px;
     }
 
     .profile__form-input {

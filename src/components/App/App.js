@@ -20,6 +20,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
+  const [likedMovies, setLikedMovies] = useState([]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -42,7 +43,6 @@ function App() {
       .checkToken()
       .then(() => {
         setIsLoggedIn(true);
-        history.push('/movies');
       })
       .catch((err) => {
         console.log(err);
@@ -54,8 +54,8 @@ function App() {
       .register(data)
       .then(() => {
         setIsRegistered(true);
+        handleLogin(data);
         // setisToolTipPopupOpen(true);
-        history.push('/signin');
       })
       .catch((err) => {
         console.log(err);
@@ -81,14 +81,42 @@ function App() {
   function handleLogOut() {
     setIsLoggedIn(false);
     localStorage.removeItem('loggedIn');
+    localStorage.clear()
     history.push('/signin');
   }
 
   function handleEditProfile(userInfo) {
     mainApi
-      .editProfile(userInfo.name, userInfo.about)
+      .editProfile(userInfo.name, userInfo.email)
       .then((newInfo) => {
         setCurrentUser(newInfo);
+      })
+      .catch(console.log);
+  };
+
+  function handleMovieLike(movie) {
+    // const isLiked = likedMovies.some((i) => i.movieId === movie.id);
+    const isLiked = likedMovies.some((i) => i.movieId === movie.id);
+    if (!isLiked) {
+      mainApi
+        .addMovie(movie)
+        .then((newMovie) => {
+          const moviesArr = Object.assign([], likedMovies);
+          moviesArr.push(newMovie);
+          setLikedMovies(moviesArr);
+        })
+        .catch(console.log);
+    } else {
+      handleMovieDelete(movie)
+    }
+  };
+
+  function handleMovieDelete(movie) {
+    mainApi
+      .deleteMovie(movie.movieId)
+      .then(() => {
+        const updMoviesArr = likedMovies.filter((i) => i.movieId !== movie.movieId);
+        setLikedMovies(updMoviesArr)
       })
       .catch(console.log);
   };
@@ -98,18 +126,22 @@ function App() {
       <div className="page">
         <Switch>
           <Route exact path='/'>
-            <Main />
+            <Main
+              isLoggedIn={isLoggedIn} />
           </Route>
           <Route exact path='/movies'>
             <Movies
+
               isLoggedIn={isLoggedIn}
-              movies={initialMovies}
+              onMovieLike={handleMovieLike}
+              onMovieDelete={handleMovieDelete}
             />
           </Route>
           <Route exact path='/saved-movies'>
             <SavedMovies
               isLoggedIn={isLoggedIn}
               movies={initialMovies}
+              onMovieDelete={handleMovieDelete}
             />
           </Route>
           <Route exact path='/profile'>

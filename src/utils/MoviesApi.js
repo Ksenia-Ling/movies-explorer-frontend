@@ -11,7 +11,7 @@ class MoviesApi {
 
 
     getMovies(jwt) {
-        return fetch(`${this._url}/movies`, { headers: this._headers, credentials: 'include', })
+        return fetch(this._url, { headers: this._headers })
             .then(this._checkResponce)
     }
 }

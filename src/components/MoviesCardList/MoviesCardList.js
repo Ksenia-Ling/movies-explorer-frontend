@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard.js';
 import './MoviesCardList.css';
 
-function MoviesCardList({ initialMovies }) {
+function MoviesCardList({ isCompleted, onShowMore, initialMovies, likedMovies, onMovieLike, onMovieDelete }) {
     const { pathname } = useLocation();
 
     return (
@@ -11,14 +11,21 @@ function MoviesCardList({ initialMovies }) {
             <div className='movies__grid'>
                 <ul className='movies-container__list'>
                     {initialMovies.map((movie) => (
-                        <MoviesCard movie={movie} id={movie._id} />)
+                        <MoviesCard
+                            likedMovies={likedMovies}
+                            movie={movie}
+                            initialMovies={initialMovies}
+                            onMovieLike={onMovieLike}
+                            onMovieDelete={onMovieDelete}
+                        />)
                     )}
                 </ul>
             </div>
             {pathname === '/movies' ? (
                 <div className='movies-container__more'>
-                    <button className='movies-container__more-button'
-                        type='button'>
+                    <button className={!isCompleted ? 'movies-container__more-button' : 'movies-container__more-button_disabled'}
+                        type='button'
+                        onClick={onShowMore}>
                         Ещё
                     </button>
                 </div>) : ('')

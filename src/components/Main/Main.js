@@ -6,10 +6,11 @@ import Techs from '../Techs/Techs.js';
 import AboutMe from "../AboutMe/AboutMe";
 import Footer from '../Footer/Footer.js';
 
-function Main() {
+function Main({ isLoggedIn }) {
     return (
         <main className='content'>
-            <Promo />
+            <Promo
+                isLoggedIn={isLoggedIn} />
             <AboutProject />
             <Techs />
             <AboutMe />

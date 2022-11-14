@@ -3,9 +3,7 @@ import './Promo.css';
 import Header from '../Header/Header';
 import promoPic from '../../images/Promo/promo-art.svg'
 
-function Promo() {
-
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+function Promo({ isLoggedIn }) {
 
     return (
         <header className='promo'>

@@ -38,3 +38,5 @@ export function useFormWithValidation(defaultValues = {}) {
 
     return { values, handleChange, errors, isValid, resetForm };
 }
+
+export default useFormWithValidation;
