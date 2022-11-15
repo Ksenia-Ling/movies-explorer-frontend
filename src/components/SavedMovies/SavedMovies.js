@@ -17,10 +17,12 @@ function SavedMovies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
         fetchMovies()
     }, []);
 
+    useEffect(() => {
+        setMoviesToShow(filterMovies());
+    }, [savedMovies, checkBox]);
+
     function handleCheckboxToggle() {
         setCheckBox(!checkBox);
-        localStorage.setItem('savedCheckBox', checkBox);
-        setMoviesToShow(filterOnCheckBox())
     }
 
     function handleChange(evt) {
@@ -30,12 +32,7 @@ function SavedMovies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
     function handleSearchCheck(evt) {
         evt.preventDefault();
         setIsLoading(true)
-        
-        if (checkBox) {
-            localStorage.setItem('savedCheckBox', checkBox);
-        }
         if (request) {
-            localStorage.setItem('savedRequest', request);
             setMoviesToShow(filterMovies());
         }
         setIsLoading(false)
@@ -99,7 +96,7 @@ function SavedMovies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
                 <Preloader />}
             <MoviesCardList
                 savedMovies={savedMovies}
-                initialMovies={savedMovies}
+                initialMovies={moviesToShow}
                 onMovieLike={onMovieLike}
                 onMovieDelete={onMovieDelete}
             />
