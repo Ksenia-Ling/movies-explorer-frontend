@@ -14,11 +14,13 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
 
     // стейты для поиска и отображения фильмов
     const [movies, setMovies] = useState([]);
-    const [moviesPerPage, setMoviesPerPage] = useState(0);
+    const [startMoviesValue, setStartMoviesValue] = useState(0);
+    const [moviesPerPage, setMoviesPerPage] = useState(3);
     const [moviesToShow, setMoviesToShow] = useState([]);
-    const [next, setNext] = useState(0);
+    const [moreMovies, setMoreMovies] = useState(0);
+    // const [next, setNext] = useState(0);
     // закончился ли массив с фильмами
-    const [isCompleted, setIsCompleted] = useState(false);
+    const [isCompleted, setIsCompleted] = useState(true);
 
     useEffect(() => {
         setCheckBox(Boolean(localStorage.getItem('checkBox') || false));
@@ -32,18 +34,20 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
     }, [movies, checkBox]);
 
 
-    window.addEventListener('resize', function () {
-        if (document.documentElement.clientWidth > 768) {
-            setMoviesPerPage(3)
-            setNext(12)
-        } else if (document.documentElement.clientWidth > 480) {
+    window.addEventListener('resize', handleResize);
+    
+    function handleResize() {
+        if (document.documentElement.clientWidth <= 480) {
             setMoviesPerPage(2)
-            setNext(8)
+            setStartMoviesValue(5)
+        } else if (document.documentElement.clientWidth <= 768) {
+            setMoviesPerPage(2)
+            setStartMoviesValue(8)
         } else {
-            setMoviesPerPage(2)
-            setNext(5)
+            setMoviesPerPage(3)
+            setStartMoviesValue(12)
         }
-    })
+    }
 
     function handleChange(evt) {
         setRequest(evt.target.value);
@@ -59,22 +63,11 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
         evt.preventDefault();
         if (checkBox) {
             localStorage.setItem('checkBox', checkBox);
-
-            // handleFilterMovies(shortMovies, request)
-            // } else {
-            //     localStorage.setItem('checkBox', 'false')
-            // handleFilterMovies(movies, request);
-            // }
-            if (request) {
-                localStorage.setItem('request', request);
-                setMoviesToShow(filterMovies());
-                // } else {
-                //     //     return (
-                //     //         <p>Нужно ввести ключевое слово</p>
-                //     //     )
-                //     // }
-                // }
-            }
+        }
+        if (request) {
+            localStorage.setItem('request', request);
+            handleSliceMovies(filterMovies(), 0, startMoviesValue);
+            setIsCompleted(false);
         }
     }
 
@@ -83,7 +76,7 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
             if (checkBox && movie.duration >= 40) {
                 return false;
             }
-            
+
             return movie.nameRU.toLowerCase().includes(request.toLowerCase())
                 || movie.nameEN.toLowerCase().includes(request.toLowerCase());
         });
@@ -91,41 +84,33 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
         return filteredMovies;
     }
 
-    // // делим массив с фильмами на части, чтобы выдавать их в зависимости от ширины экрана
-    // function handleSliceMovies(movies, start, end) {
-    //     const slicedMovies = movies.slice(start, end);
-    //     const arrayForMovies = [];
-    //     arrayForMovies.push(...slicedMovies);
+    // часть, которую показываем при нажатии на кнопку поиска
+    function handleSliceMovies(movies, start, end) {
+        handleResize();
+        // setNext(next + moviesPerPage);
+        const slicedMovies = movies.slice(start, end);
+        setMoviesToShow(slicedMovies);
+        setMoreMovies(Number(start + end))
+        // setNext(0);
+    };
 
-    //     setMoviesToShow(arrayForMovies);
-    //     if (next >= movies.length - moviesPerPage) {
-    //         setIsCompleted(true);
-    //     } else {
-    //         setIsCompleted(false);
-    //     }
-    // };
+    // остальная часть массива, которую показываем на кнопку "ещё" по частям
+    function handleShowMoreMovies(movies, end) {
+        const finalSlicedMovies = movies.slice(0, end);
 
-    //на кнопку "ещё" показываем часть массива фильмов
-    // function handleShowMoreMovies(movies) {
-    //     handleSliceMovies(movies, next, next + moviesPerPage);
-    //     setNext(next + moviesPerPage);
-    // };
+        setMoviesToShow(finalSlicedMovies);
+        setMoreMovies(moreMovies + moviesPerPage);
 
-    // // логика фильтрации по ключевому слову
-    // function handleFilterMovies(movies, request) {
-    //     const allSearchedMovies = movies.filter(function (movie) {
-    //         return movie.NameRU.toLowerCase().includes(request.toLowerCase());
-    //     })
+        if (moreMovies >= movies.length - moviesPerPage) {
+            setIsCompleted(true);
+        } else {
+            setIsCompleted(false);
+        }
+        if (isCompleted) {
+            setMoreMovies(0);
+        }
+    };
 
-    //     if (allSearchedMovies.length === 0) {
-    //         return (
-    //             <p>Ничего не найдено</p>
-    //         )
-    //     } else {
-    //         return handleShowMoreMovies(allSearchedMovies)
-    //         localStorage.setItem('movies', JSON.stringify(allSearchedMovies));
-    //     }
-    // }
 
     function fetchMovies() {
         if (JSON.parse(localStorage.getItem('movies')) !== null) {
@@ -137,9 +122,6 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
                     setMovies(movies);
                     localStorage.setItem('movies', JSON.stringify(movies));
 
-                    // const shortMovies = movies.filter(function (movie) {
-                    //     return movie.duration <= 40
-                    // });
                 })
                 .catch((err) => {
                     console.log(err);
@@ -164,7 +146,7 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
                 savedMovies={savedMovies}
                 initialMovies={moviesToShow}
                 isCompleted={isCompleted}
-                // onShowMore={handleShowMoreMovies}
+                onShowMore={() => handleShowMoreMovies(filterMovies(), moreMovies + moviesPerPage)}
                 onMovieLike={onMovieLike}
                 onMovieDelete={onMovieDelete}
             />
