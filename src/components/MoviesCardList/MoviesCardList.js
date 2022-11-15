@@ -16,11 +16,11 @@ function MoviesCardList({ isCompleted, onShowMore, initialMovies, savedMovies, o
                             <MoviesCard
                                 savedMovies={savedMovies}
                                 movie={movie}
+                                key={movie._movieId}
                                 initialMovies={initialMovies}
                                 onMovieLike={onMovieLike}
                                 onMovieDelete={onMovieDelete}
-                            />)
-                        )
+                            />))
                         :
                         <p className='movies-container__error-message'>{errorText}</p>
                     }

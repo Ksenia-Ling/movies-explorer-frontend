@@ -1,4 +1,4 @@
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './App.css';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
@@ -9,18 +9,21 @@ import Profile from '../Profile/Profile.js';
 import Login from '../Login/Login.js';
 import Register from '../Register/Register.js';
 import NotFound from '../NotFound/NotFound.js';
-import { initialMovies } from '../../utils/initialMovies.js';
+import ProtectedRoute from '../protectedRoute/ProtectedRoute';
+import InfoToolTip from '../InfoToolTip/InfoToolTip';
 import { mainApi } from '../../utils/MainApi';
-import { moviesApi } from '../../utils/MoviesApi';
 
 function App() {
 
   const history = useHistory();
+  const { pathname } = useLocation();
 
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
+  const [isToolTipPopupOpen, setisToolTipPopupOpen] = useState(false);
+
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -46,6 +49,7 @@ function App() {
       .checkToken()
       .then(() => {
         setIsLoggedIn(true);
+        history.replace(pathname);
       })
       .catch((err) => {
         console.log(err);
@@ -58,12 +62,11 @@ function App() {
       .then(() => {
         setIsRegistered(true);
         handleLogin(data);
-        // setisToolTipPopupOpen(true);
       })
       .catch((err) => {
         console.log(err);
         setIsRegistered(false);
-        // setisToolTipPopupOpen(true);
+        setisToolTipPopupOpen(true);
       })
   }
 
@@ -77,7 +80,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        // setisToolTipPopupOpen(true);
+        setisToolTipPopupOpen(true);
       })
   }
 
@@ -95,10 +98,10 @@ function App() {
         setCurrentUser(newInfo);
       })
       .catch(console.log);
+      setisToolTipPopupOpen(true);
   };
 
   function handleMovieLike(movie) {
-    // const isLiked = likedMovies.some((i) => i.movieId === movie.id);
     const isSaved = savedMovies.some((i) => i.movieId === movie.id);
     if (!isSaved) {
       mainApi
@@ -127,6 +130,10 @@ function App() {
       .catch(console.log);
   };
 
+  function closePopup() {
+    setisToolTipPopupOpen(false);
+};
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -135,29 +142,31 @@ function App() {
             <Main
               isLoggedIn={isLoggedIn} />
           </Route>
-          <Route exact path='/movies'>
-            <Movies
-              savedMovies={savedMovies}
-              isLoggedIn={isLoggedIn}
-              onMovieLike={handleMovieLike}
-              onMovieDelete={handleMovieDelete}
-            />
-          </Route>
-          <Route exact path='/saved-movies'>
-            <SavedMovies
-              savedMovies={savedMovies}
-              isLoggedIn={isLoggedIn}
-              movies={initialMovies}
-              onMovieDelete={handleMovieDelete}
-            />
-          </Route>
-          <Route exact path='/profile'>
-            <Profile
-              isLoggedIn={isLoggedIn}
-              onEditProfile={handleEditProfile}
-              onLogout={handleLogOut}
-            />
-          </Route>
+          <ProtectedRoute
+            exact path='/movies'
+            component={Movies}
+            savedMovies={savedMovies}
+            isLoggedIn={isLoggedIn}
+            onMovieLike={handleMovieLike}
+            onMovieDelete={handleMovieDelete}
+            isPopupOpen={isToolTipPopupOpen}
+          />
+          <ProtectedRoute
+            exact path='/saved-movies'
+            component={SavedMovies}
+            savedMovies={savedMovies}
+            isLoggedIn={isLoggedIn}
+            movies={savedMovies}
+            onMovieDelete={handleMovieDelete}
+          />
+          <ProtectedRoute
+            exact path='/profile'
+            component={Profile}
+            isLoggedIn={isLoggedIn}
+            onEditProfile={handleEditProfile}
+            onLogout={handleLogOut}
+          />
+
           <Route exact path='/signin'>
             <Login
               onLogin={handleLogin} />
@@ -171,6 +180,12 @@ function App() {
             <NotFound />
           </Route>
         </Switch>
+
+        <InfoToolTip
+          isOpen={isToolTipPopupOpen}
+          onClose={closePopup}
+          toolTipText={"Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз!"}>
+        </InfoToolTip>
       </div>
     </CurrentUserContext.Provider>
   );

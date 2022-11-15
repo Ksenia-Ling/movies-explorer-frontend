@@ -3,10 +3,19 @@
     margin: auto;
 }
 
+.movies-container {
+    flex-grow: 1;
+}
+
+.movies-container__error-message {
+    margin: auto;
+    font-size: 20px;
+}
+
 .movies-container__list {
     display: grid;
     grid-template-columns: repeat(3, minmax(364px, 1fr));
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
     column-gap: 24px;
     row-gap: 37px;
     list-style: none;

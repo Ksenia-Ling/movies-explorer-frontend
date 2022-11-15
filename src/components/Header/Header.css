@@ -1,6 +1,7 @@
 .header {
     background-color: #073042;
     font-family: "Inter", "Arial", sans-serif;
+    width: 100%;
 }
 
 .header_color_dark {

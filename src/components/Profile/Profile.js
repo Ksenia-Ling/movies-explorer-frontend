@@ -54,8 +54,6 @@ function Profile({ isLoggedIn, onEditProfile, onLogout }) {
                             onChange={handleChange}
                         />
                         <span className='profile__error-span profile__error-span_type_name'>{errors.name}</span>
-
-
                     </div>
                     <div className='profile__form-input'>
                         <p className='profile__input-title'>
@@ -70,9 +68,9 @@ function Profile({ isLoggedIn, onEditProfile, onLogout }) {
                             value={values.email || ''}
                             onChange={handleChange}
                         />
-                        <span className='profile__error-span profile__error-span_type_name'>{errors.email}</span>
+                        <span className='profile__error-span profile__error-span_type_email'>{errors.email}</span>
                     </div>
-                    <button className='profile__btn "profile__btn_type_edit'
+                    <button className='profile__btn profile__btn_type_edit'
                         // <button className={`profile__btn ${!isValid ? "profile__btn_type_edit_disabled" : "profile__btn_type_edit"}`}
                         type='submit'
                         disabled={!isValid}>

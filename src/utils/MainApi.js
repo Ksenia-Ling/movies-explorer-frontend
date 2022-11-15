@@ -35,7 +35,8 @@ class MainApi {
       headers: this._headers,
       credentials: 'include',
     })
-      .then(res => this._checkResponce(res))
+      .then(res => this._checkResponce(res)
+      )
   };
 
   getUserInfo(jwt) {

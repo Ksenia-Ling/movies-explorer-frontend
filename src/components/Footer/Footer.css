@@ -1,8 +1,11 @@
 .footer {
+    width: 100%;
     min-height: 172px;
     background-color: #202020;
     color: white;
     box-sizing: border-box;
+    align-self: end;
+    margin: 0 auto
 }
 
 .footer__text {

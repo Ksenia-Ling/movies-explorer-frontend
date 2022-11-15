@@ -4,6 +4,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Preloader from '../Preloader/Preloader';
 import { moviesApi } from '../../utils/MoviesApi';
 
 
@@ -11,6 +12,7 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
 
     const [checkBox, setCheckBox] = useState(false);
     const [request, setRequest] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     // стейты для поиска и отображения фильмов
     const [movies, setMovies] = useState([]);
@@ -18,7 +20,7 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
     const [moviesPerPage, setMoviesPerPage] = useState(3);
     const [moviesToShow, setMoviesToShow] = useState([]);
     const [moreMovies, setMoreMovies] = useState(0);
-    // const [next, setNext] = useState(0);
+
     // закончился ли массив с фильмами
     const [isCompleted, setIsCompleted] = useState(true);
 
@@ -35,7 +37,8 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
 
 
     window.addEventListener('resize', handleResize);
-    
+
+
     function handleResize() {
         if (document.documentElement.clientWidth <= 480) {
             setMoviesPerPage(2)
@@ -47,6 +50,7 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
             setMoviesPerPage(3)
             setStartMoviesValue(12)
         }
+        clearTimeout();
     }
 
     function handleChange(evt) {
@@ -67,7 +71,6 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
         if (request) {
             localStorage.setItem('request', request);
             handleSliceMovies(filterMovies(), 0, startMoviesValue);
-            setIsCompleted(false);
         }
     }
 
@@ -87,15 +90,15 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
     // часть, которую показываем при нажатии на кнопку поиска
     function handleSliceMovies(movies, start, end) {
         handleResize();
-        // setNext(next + moviesPerPage);
         const slicedMovies = movies.slice(start, end);
         setMoviesToShow(slicedMovies);
         setMoreMovies(Number(start + end))
-        // setNext(0);
+        moviesToShow.length > 0 ? setIsCompleted(false) : setIsCompleted(true);
     };
 
     // остальная часть массива, которую показываем на кнопку "ещё" по частям
     function handleShowMoreMovies(movies, end) {
+        setIsLoading(true)
         const finalSlicedMovies = movies.slice(0, end);
 
         setMoviesToShow(finalSlicedMovies);
@@ -109,6 +112,7 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
         if (isCompleted) {
             setMoreMovies(0);
         }
+        setIsLoading(false)
     };
 
 
@@ -119,13 +123,16 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
             moviesApi
                 .getMovies()
                 .then((movies) => {
+                    setIsLoading(true)
                     setMovies(movies);
                     localStorage.setItem('movies', JSON.stringify(movies));
-
                 })
                 .catch((err) => {
                     console.log(err);
-                });
+                })
+                .finally(() =>
+                    setIsLoading(false)
+                );
         }
     }
 
@@ -142,6 +149,8 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
                 onChange={handleChange}
                 onSubmit={handleSearchCheck}
             />
+            {isLoading &&
+                <Preloader />}
             <MoviesCardList
                 savedMovies={savedMovies}
                 initialMovies={moviesToShow}
