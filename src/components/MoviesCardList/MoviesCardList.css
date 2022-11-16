@@ -3,10 +3,22 @@
     margin: auto;
 }
 
+.movies-container {
+    flex-grow: 1;
+}
+
+.movies-container__error-message {
+    margin: auto;
+    font-size: 25px;
+    order: 3;
+    color: #4285F4;
+    grid-column: 1 / -1;
+}
+
 .movies-container__list {
     display: grid;
     grid-template-columns: repeat(3, minmax(364px, 1fr));
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
     column-gap: 24px;
     row-gap: 37px;
     list-style: none;
@@ -35,7 +47,12 @@
     font-weight: 500px;
     line-height: 15px;
     cursor: pointer;
+    visibility: visible;
     transition: opacity 0.3s linear;
+}
+
+.movies-container__more-button_disabled {
+    visibility: hidden;
 }
 
 .movies-container__more-button:hover {

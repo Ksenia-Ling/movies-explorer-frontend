@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import './AuthForm.css';
 import logo from '../../images/Header/logo.svg';
 
-function AuthForm({ heading, children, submitBtnText, route, message, linkText }) {
+function AuthForm({ isLoading, onSubmit, heading, children, submitBtnText, route, message, linkText, isValid }) {
+
     return (
         <section className='auth-form'>
             <div className='auth-form__container'>
@@ -18,12 +19,14 @@ function AuthForm({ heading, children, submitBtnText, route, message, linkText }
                     {heading}
                 </h1>
 
-                <form className='auth-form__form'>
+                <form className='auth-form__form'
+                onSubmit={onSubmit}>
 
                     {children}
 
                     <button
                         type="submit"
+                        disabled={!isValid || isLoading}
                         className="auth-form__submit-button">
                         {submitBtnText}
                     </button>

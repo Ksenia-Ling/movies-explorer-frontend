@@ -21,8 +21,9 @@
 
 .profile__form {
     max-width: 410px;
-    margin-bottom: 193px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile__form-input {
@@ -73,6 +74,26 @@
     box-sizing: border-box;
 }
 
+.profile__input_invalid {
+    color: #ee3465;
+}
+
+.profile__error-span {
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 400;
+    color: #ee3465;
+    position: absolute;
+}
+
+.profile__error-span_type_name {
+    top: 315px;
+}
+
+.profile__error-span_type_email {
+    top: 365px;
+}
+
 .profile__btn {
     font-size: 13px;
     line-height: 16px;
@@ -89,7 +110,19 @@
 .profile__btn_type_edit {
     color: white;
     font-weight: 400;
+    padding-top: 193px;
     padding-bottom: 16px;
+    cursor: pointer;
+}
+
+.profile__btn_type_edit:disabled {
+    color: rgba(143, 142, 142, 0.411);
+    font-weight: 400;
+    padding-top: 193px;
+    padding-bottom: 16px;
+    cursor: default;
+    transition: none;
+    opacity: 1;
 }
 
 .profile__btn_type_logout {
@@ -117,7 +150,10 @@
 
     .profile__form {
         max-width: calc(100% - (30px*2));
-        margin-bottom: 363px;
+    }
+
+    .profile__btn_type_edit {
+        padding-top: 363px;
     }
 
     .profile__form-input {

@@ -32,6 +32,9 @@
     font-weight: 400;
     text-decoration: none;
     transition: color 0.3s linear;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
 }
 
 .page-not-found__return-link:hover {

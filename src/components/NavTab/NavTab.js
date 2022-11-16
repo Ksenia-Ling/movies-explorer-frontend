@@ -13,6 +13,7 @@ function NavTab({ isOpen, handleMenuClose }) {
     }, [currentLocation]);
 
     return (
+        <div className ={`nav-tab__overlay ${isOpen && 'nav-tab__overlay_visible'}`}>
         <div className={`nav-tab ${isOpen && 'nav-tab_active'}`}>
             <button className="nav-tab__close-btn" onClick={handleMenuClose}/>
 
@@ -63,6 +64,7 @@ function NavTab({ isOpen, handleMenuClose }) {
                     />
                 </Link>
             </nav>
+        </div>
         </div>
     );
 }
