@@ -1,18 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-// import { initialMovies } from '../../utils/initialMovies';
 
 function MoviesCard({ movie, savedMovies, onMovieLike, onMovieDelete }) {
 
     const { pathname } = useLocation();
-    const currentUser = useContext(CurrentUserContext);
 
     function getMovieDuration(mins) {
         return `${Math.floor(mins / 60)}ч ${mins % 60}м`;
     }
-    // const isOwn = movie.owner === currentUser._id;
 
     const isSaved = savedMovies.some((i) => i.movieId === movie.id);
 

@@ -1,9 +1,9 @@
-import { React, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './AuthForm.css';
 import logo from '../../images/Header/logo.svg';
 
-function AuthForm({ onSubmit, heading, children, submitBtnText, route, message, linkText }) {
+function AuthForm({ isLoading, onSubmit, heading, children, submitBtnText, route, message, linkText, isValid }) {
 
     return (
         <section className='auth-form'>
@@ -26,6 +26,7 @@ function AuthForm({ onSubmit, heading, children, submitBtnText, route, message, 
 
                     <button
                         type="submit"
+                        disabled={!isValid || isLoading}
                         className="auth-form__submit-button">
                         {submitBtnText}
                     </button>

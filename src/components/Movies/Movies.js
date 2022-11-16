@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
@@ -6,9 +6,11 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 import { moviesApi } from '../../utils/MoviesApi';
+import { MOBILE_MEDIA_BREAKPOINT, SHORT_MOVIE_DURATION, TABLET_MEDIA_BREAKPOINT } from '../../utils/constants';
 
+let timerId = 0;
 
-function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
+function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete, handleError }) {
 
     const [checkBox, setCheckBox] = useState(false);
     const [request, setRequest] = useState('');
@@ -28,23 +30,35 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
         setCheckBox(JSON.parse(localStorage.getItem('checkBox') || false));
         setRequest(localStorage.getItem('request') || '');
         fetchMovies();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     useEffect(() => {
         if (request !== '') {
             handleSliceMovies(filterMovies(), 0, startMoviesValue);
         };
-        handleResize();
+        setShowingMoviesCount();
     }, [movies, checkBox]);
 
 
-    window.addEventListener('resize', handleResize);
-
     function handleResize() {
-        if (document.documentElement.clientWidth <= 480) {
+        clearTimeout(timerId);
+
+        timerId = setTimeout(() => {
+            setShowingMoviesCount();
+        }, 300);
+    }
+
+    function setShowingMoviesCount() {
+        if (document.documentElement.clientWidth <= MOBILE_MEDIA_BREAKPOINT) {
             setMoviesPerPage(2)
             setStartMoviesValue(5)
-        } else if (document.documentElement.clientWidth <= 768) {
+        } else if (document.documentElement.clientWidth <= TABLET_MEDIA_BREAKPOINT) {
             setMoviesPerPage(2)
             setStartMoviesValue(8)
         } else {
@@ -65,7 +79,9 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
     // проверка на введённое значение перед поиском фильма
     function handleSearchCheck(evt) {
         evt.preventDefault();
-            localStorage.setItem('checkBox', !checkBox);
+
+        localStorage.setItem('checkBox', checkBox);
+
         if (request) {
             localStorage.setItem('request', request);
             handleSliceMovies(filterMovies(), 0, startMoviesValue);
@@ -74,7 +90,7 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
 
     function filterMovies() {
         const filteredMovies = movies.filter((movie) => {
-            if (checkBox && movie.duration >= 40) {
+            if (checkBox && movie.duration >= SHORT_MOVIE_DURATION) {
                 return false;
             }
 
@@ -91,7 +107,7 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
         setMoviesToShow(slicedMovies);
         setMoreMovies(Number(start + end))
         movies.length > slicedMovies.length ? setIsCompleted(false) : setIsCompleted(true);
-    };
+    }
 
     // остальная часть массива, которую показываем на кнопку "ещё" по частям
     function handleShowMoreMovies(movies, end) {
@@ -108,7 +124,7 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
             setIsCompleted(false);
         }
         setIsLoading(false)
-    };
+    }
 
     function fetchMovies() {
         if (JSON.parse(localStorage.getItem('movies')) !== null) {
@@ -123,6 +139,7 @@ function Movies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
                 })
                 .catch((err) => {
                     console.log(err);
+                    handleError();
                 })
                 .finally(() =>
                     setIsLoading(false)

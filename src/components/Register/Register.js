@@ -1,11 +1,18 @@
-import { React } from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import './Register.css';
 import AuthForm from '../AuthForm/AuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
+import { EMAIL_REGEXP, NAME_REGEXP } from '../../utils/constants';
 
-function Register({ onRegister }) {
+function Register({ onRegister, isLoading, isLoggedIn }) {
 
-    const { values, handleChange, errors } = useFormWithValidation({ name: '', email: '', password: '' });
+    const { values, handleChange, errors, isValid } = useFormWithValidation({ name: '', email: '', password: '' });
+    const history = useHistory();
+
+    useEffect(() => {
+        isLoggedIn && history.push('/')
+      }, [isLoggedIn]);
 
     function handleSubmit(evt) {
         evt.preventDefault();
@@ -15,10 +22,12 @@ function Register({ onRegister }) {
     return (
         <main className='register'>
             <AuthForm
+                isLoading={isLoading}
                 onSubmit={handleSubmit}
                 heading="Добро пожаловать!"
                 submitBtnText="Зарегистрироваться"
                 route="/signin"
+                isValid={isValid}
                 message="Уже зарегистрированы?"
                 linkText="Войти">
 
@@ -34,6 +43,7 @@ function Register({ onRegister }) {
                     placeholder=""
                     minLength="4"
                     maxLength="40"
+                    pattern={NAME_REGEXP}
                     required
                     value={values.name}
                     onChange={handleChange}
@@ -46,6 +56,7 @@ function Register({ onRegister }) {
 
                 <input
                     type="email"
+                    pattern={EMAIL_REGEXP}
                     className={`register__input ${errors.name !== '' ? "register__input_invalid" : ""
                         }`}
                     name="email"

@@ -1,10 +1,11 @@
-import { React, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Profile.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
+import { NAME_REGEXP, EMAIL_REGEXP } from '../../utils/constants';
 
-function Profile({ isLoggedIn, onEditProfile, onLogout }) {
+function Profile({ isLoading, isLoggedIn, onEditProfile, onLogout }) {
 
     const { values, setValues, handleChange, errors, resetForm, isValid, setIsValid } = useFormWithValidation({ name: '', email: '' });
     const currentUser = useContext(CurrentUserContext);
@@ -49,6 +50,7 @@ function Profile({ isLoggedIn, onEditProfile, onLogout }) {
                             }`}
                             placeholder='Введите имя'
                             name='name'
+                            pattern={NAME_REGEXP}
                             required
                             value={values.name || ''}
                             onChange={handleChange}
@@ -63,7 +65,8 @@ function Profile({ isLoggedIn, onEditProfile, onLogout }) {
                             }`}
                             placeholder='Введите e-mail'
                             name='email'
-                            type='email'
+                            type="email"
+                            pattern={EMAIL_REGEXP}
                             required
                             value={values.email || ''}
                             onChange={handleChange}
@@ -72,7 +75,7 @@ function Profile({ isLoggedIn, onEditProfile, onLogout }) {
                     </div>
                     <button className='profile__btn profile__btn_type_edit'
                         type='submit'
-                        disabled={!isValid}>
+                        disabled={!isValid || isLoading}>
                         Редактировать
                     </button>
                 </form>

@@ -1,8 +1,8 @@
 import crossPic from "../../images/Popup/cross_pic.svg";
-import checkMarkPic from "../../images/Popup/checkmark_pic.svg"
+import checkmarkPic from "../../images/Popup/checkmark_pic.svg";
 import './InfoToolTip.css';
 
-function InfoToolTip({ isOpen, onClose, toolTipText, isSuccessful }) {
+function InfoToolTip({ isOpen, onClose, toolTipData }) {
     return (
         <div className={`popup popup_type_tooltip" ${isOpen && 'popup_opened'}`}>
             <div className="popup__container popup__container_place_tooltip">
@@ -13,11 +13,11 @@ function InfoToolTip({ isOpen, onClose, toolTipText, isSuccessful }) {
                 </button>
                 <img
                     className="popup__checkin-pic"
-                    src={isSuccessful ? checkMarkPic : crossPic}
-                    alt="Индикатор успеха" />
+                    src={toolTipData.success ? checkmarkPic : crossPic}
+                    alt="Иконка состояния уведомления" />
                 <h3
                     className="popup__checkin-tooltip">
-                    {toolTipText}
+                    {toolTipData.text}
                 </h3>
             </div>
         </div>

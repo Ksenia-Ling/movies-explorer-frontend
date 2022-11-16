@@ -29,6 +29,15 @@ class MainApi {
       .then(res => this._checkResponce(res))
   };
 
+  logout = () => {
+    return fetch(`${this._url}/signout`, {
+      method: 'POST',
+      headers: this._headers,
+      credentials: 'include',
+    })
+      .then(res => this._checkResponce(res))
+  };
+
   checkToken = () => {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
@@ -98,7 +107,8 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-  url: 'https://api.movies.ksenia-ling.nomoredomains.icu',
+  // url: 'http://localhost:4000',
+  url:'https://api.movies.ksenia-ling.nomoredomains.icu',
   headers: {
     'Content-Type': 'application/json'
   }

@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SavedMovies.css';
 import Header from '../Header/Header';
 import Footer from "../Footer/Footer";
@@ -6,8 +6,9 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from '../Preloader/Preloader';
 import { mainApi } from '../../utils/MainApi';
+import { SHORT_MOVIE_DURATION } from '../../utils/constants';
 
-function SavedMovies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
+function SavedMovies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete, handleError }) {
     const [checkBox, setCheckBox] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [request, setRequest] = useState('');
@@ -40,7 +41,7 @@ function SavedMovies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
 
     function filterMovies() {
         const filteredMovies = savedMovies.filter((movie) => {
-            if (checkBox && movie.duration >= 40) {
+            if (checkBox && movie.duration >= SHORT_MOVIE_DURATION) {
                 return false;
             }
 
@@ -64,6 +65,7 @@ function SavedMovies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
                 })
                 .catch((err) => {
                     console.log(err);
+                    handleError();
                 })
                 .finally(() =>
                     setIsLoading(false)
