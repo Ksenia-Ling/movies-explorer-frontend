@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 // import { initialMovies } from '../../utils/initialMovies';
 
-function MoviesCard({ movie, initialMovies, savedMovies, onMovieLike, onMovieDelete }) {
+function MoviesCard({ movie, savedMovies, onMovieLike, onMovieDelete }) {
 
     const { pathname } = useLocation();
     const currentUser = useContext(CurrentUserContext);

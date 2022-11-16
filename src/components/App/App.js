@@ -23,6 +23,7 @@ function App() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [isToolTipPopupOpen, setisToolTipPopupOpen] = useState(false);
+  const [isSuccessful, setIsSuccessful] = useState(false)
 
 
   useEffect(() => {
@@ -66,6 +67,7 @@ function App() {
       .catch((err) => {
         console.log(err);
         setIsRegistered(false);
+        setIsSuccessful(false)
         setisToolTipPopupOpen(true);
       })
   }
@@ -80,6 +82,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        setIsSuccessful(false)
         setisToolTipPopupOpen(true);
       })
   }
@@ -96,8 +99,10 @@ function App() {
       .editUserInfo(userInfo)
       .then((newInfo) => {
         setCurrentUser(newInfo);
+        setIsSuccessful(true)
       })
       .catch(console.log);
+      setIsSuccessful(false)
       setisToolTipPopupOpen(true);
   };
 
@@ -183,8 +188,9 @@ function App() {
 
         <InfoToolTip
           isOpen={isToolTipPopupOpen}
+          isSuccessful={isSuccessful}
           onClose={closePopup}
-          toolTipText={"Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз!"}>
+          toolTipText={isSuccessful ? "Данные успешно изменены" : "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз!"}>
         </InfoToolTip>
       </div>
     </CurrentUserContext.Provider>

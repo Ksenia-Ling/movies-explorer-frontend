@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import './Promo.css';
 import Header from '../Header/Header';
 import promoPic from '../../images/Promo/promo-art.svg'

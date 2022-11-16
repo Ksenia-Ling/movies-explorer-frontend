@@ -51,14 +51,6 @@ function SavedMovies({ savedMovies, isLoggedIn, onMovieLike, onMovieDelete }) {
         return filteredMovies;
     }
 
-    function filterOnCheckBox() {
-        if (request === '') {
-            return !checkBox ? savedMovies.filter(({ duration }) => duration <= 40) : savedMovies;
-        } else {
-            return !checkBox ? moviesToShow.filter(({ duration }) => duration <= 40) : moviesToShow;
-        }
-    }
-
     function fetchMovies() {
         if (JSON.parse(localStorage.getItem('savedMovies')) !== null) {
             setMoviesToShow(JSON.parse(localStorage.getItem('savedMovies')))

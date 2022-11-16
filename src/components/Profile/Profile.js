@@ -71,7 +71,6 @@ function Profile({ isLoggedIn, onEditProfile, onLogout }) {
                         <span className='profile__error-span profile__error-span_type_email'>{errors.email}</span>
                     </div>
                     <button className='profile__btn profile__btn_type_edit'
-                        // <button className={`profile__btn ${!isValid ? "profile__btn_type_edit_disabled" : "profile__btn_type_edit"}`}
                         type='submit'
                         disabled={!isValid}>
                         Редактировать
